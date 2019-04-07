@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Game</title>
+        <meta charset="UTF-8">
+        
+        <style>
+            body {
+                  background-image: url("assets/bg.png");
+                    }
+            #game{
+                   margin-top: 30px;    
+                   }
+            .menu{
+                    width:800px;
+                    height:200px;
+                    margin: 40px;
+                    text-align: left;
+                    position:relative;
+                   
+                }
+            .menu:after{
+                background-color: #000;
+                opacity: 0.1;
+                content:'';
+                width:800px;
+                height:200px;
+                position: absolute;
+                top:0;
+                left:0;
+                opacity:0.5;
+                border-image: url(assets/border.png) 10 round;
+                border-width: 0 0 10px;
+                border-bottom: 10px;
+                
+                }      
+                
+            
+        #ins,#desc {
+                
+                font-family: Impact, Charcoal, sans-serif;
+                color: #1a1a1a;
+                font-size:
+                20px;
+                text-align: center;
+                position: relative;
+                left: 2%;
+                z-index: 1;
+                opacity: 1;
+                cursor: pointer;
+                height: 15px;
+                padding: 10px;
+                margin: 3px;
+                            
+                    }
+        #desc { background-color: #f2f2f2;}   
+        #ins { background-color: #a6a6a6;}   
+        
+        #text{
+                
+            background-color: #f2f2f2;
+            font-family: Verdana, Geneva;
+            font-size: 15px;
+            
+            left: 2%;
+            margin: 3px;
+            padding: 20px;
+            width: 90%;
+            height: 55%;
+            z-index: 2;
+            position: relative;
+            
+                    }
+    #text i {
+                color: grey;        
+                    }
+                    
+         
+            
+            </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/phaser.min.js"> </script>
+        <script src="js/Load.js"> </script>
+         <script src="js/Game.js"> </script>
+         <script src="js/Menu.js"> </script>
+         <script src="js/Board.js"> </script>
+     
+    
+        <script type="text/javascript"> 
+            var game = new Phaser.Game(900,600,Phaser.CANVAS,'game');
+            
+            game.state.add("Loading",Loading);
+            game.state.add("Game",Game);
+            game.state.add("Menu",Menu);
+            game.state.add("Board",Board);
+            game.state.start("Loading");
+            
+        
+        function desc()
+        {
+            var desc = document.getElementById("desc") ;
+            var ins = document.getElementById("ins") ;
+            desc.style.backgroundColor = '#f2f2f2';
+            ins.style.backgroundColor = '#a6a6a6';
+            document.getElementById("text").innerHTML = "  <i> A minute to win it! Collect as many stars as possible in the given time! </i> <p>  pop! is a fun game with a simple goal: pop those bubbles! Using the colored blocks, pop the coresponding bubbles and collect the stars<p> Post your scores on the leaderboard and compete with your friends.";
+        }
+        function ins()
+        {
+            var desc = document.getElementById("desc") ;
+            var ins = document.getElementById("ins") ;
+            ins.style.backgroundColor = '#f2f2f2';
+            desc.style.backgroundColor = '#a6a6a6';
+            document.getElementById("text").innerHTML = "<ul><li> Use the up and down arrow leys to scroll through the blocks <li> Blocks of a particular color can pop only the bubbles of that color. <li> Trying to pop bubbles of different colors results in the block being pushed backwards.  <li> Stars are collected only on popping the bubbles. <li> Remember to post your score on the leaderboard at the end of the game!";
+                    
+            }
+
+         </script>
+        
+    </head>
+    <body onload=desc()>
+
+    <center><div id="game"></div>
+    <div class="menu"> <span id="desc" onclick = desc()> Description </span>   <span id="ins" onclick = ins()> Instructions </span>
+    <div id="text"> </div></div></center>
+    </body>
+</html>
